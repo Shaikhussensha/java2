@@ -1,0 +1,36 @@
+import java.sql.*;
+
+public class JDBCInsert {
+    public static void main(String[] args) {
+        try {
+            // Load MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish database connection
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/college",
+                "root",
+                "password"
+            );
+
+            System.out.println("Database connected successfully!");
+
+            // Create statement
+            Statement stmt = con.createStatement();
+
+            // Insert values into student table
+            String sql = "INSERT INTO student VALUES (101, 'Gowtham', 20)";
+
+            stmt.executeUpdate(sql);
+
+            System.out.println("Record inserted successfully!");
+
+            // Close connection
+            stmt.close();
+            con.close();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
